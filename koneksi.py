@@ -193,6 +193,7 @@ def hapusData(id_transaksi_ibnu):
     conn.close()
     return redirect('/')
 
+
 @app.route('/cetak_pasien_ibnu')
 def cetak_pasien_ibnu():
     try:
@@ -242,6 +243,7 @@ def cetak_pasien_ibnu():
 
     except Exception as e:
         return f"<h1>Gagal Mencetak PDF</h1><p>Error: {e}</p>"
+
 
 @app.route('/cetak_transaksi_ibnu')
 def cetak_transaksi_ibnu():
