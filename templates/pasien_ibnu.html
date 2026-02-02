@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <title>Data Pasien</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='ibnu_style.css') }}">
+</head>
+<body>
+
+<ul class="navbar">
+    <li><a href="/">Transaksi</a></li>
+    <li><a href="/pasien_ibnu">Pasien</a></li>
+</ul>
+
+<div class="container">
+    <div class="card">
+        <h2>Data Pasien</h2>
+
+        <table>
+            <tr>
+                <th>ID Pasien</th>
+                <th>Nama</th>
+                <th>Alamat</th>
+                <th>Kontak</th>
+            </tr>
+
+            {% for p in pasien %}
+            <tr>
+                <td>{{ p.id_pasien_ibnu }}</td>
+                <td>{{ p.nama_ibnu }}</td>
+                <td>{{ p.alamat_ibnu }}</td>
+                <td>{{ p.kontak_ibnu }}</td>
+            </tr>
+            {% endfor %}
+        </table>
+
+        <div class="action-bar">
+            <a href="/cetak_pasien_ibnu" target="_blank"><button class="btn btn-primary">Cetak</button></a>
+        </div>
+    </div>
+</div>
+
+</body>
+</html>

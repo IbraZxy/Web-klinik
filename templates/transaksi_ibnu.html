@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Transaksi Rawat Inap</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='ibnu_style.css') }}">
+</head>
+
+<body>
+
+    <ul class="navbar">
+        <li><a href="/">Transaksi</a></li>
+        <li><a href="/pasien_ibnu">Pasien</a></li>
+    </ul>
+
+    <div class="container">
+        <div class="card">
+            <h2>Data Transaksi Rawat Inap</h2>
+
+            <table>
+                <tr>
+                    <th>ID Transaksi</th>
+                    <th>ID Rawat</th>
+                    <th>Nama</th>
+                    <th>Kelas</th>
+                    <th>Status</th>
+                    <th>Tgl Masuk</th>
+                    <th>Tgl Keluar</th>
+                    <th>Hari</th>
+                    <th>Total</th>
+                    <th>Tanggal</th>
+                    <th>Aksi</th>
+                </tr>
+
+                {% for t in transaksi %}
+                <tr>
+                    <td>{{ t.id_transaksi_ibnu }}</td>
+                    <td>{{ t.id_rawat_ibnu }}</td>
+                    <td>{{ t.nama_ibnu }}</td>
+                    <td>{{ t.kelas_ibnu }}</td>
+                    <td>{{ t.status_pembayaran_ibnu }}</td>
+                    <td>{{ t.tgl_masuk_ibnu }}</td>
+                    <td>{{ t.tgl_keluar_ibnu }}</td>
+                    <td>{{ t.jumlah_hari_ibnu }}</td>
+                    <td>{{ t.total_biaya_ibnu }}</td>
+                    <td>{{ t.tgl_ibnu }}</td>
+                    <td>
+                        <a href="{{ url_for('editData', id_transaksi_ibnu=t.id_transaksi_ibnu) }}"
+                            class="btn btn-primary">Edit</a>
+                        <form action="/hapusData/{{ t.id_transaksi_ibnu }}" method="post"
+                            onsubmit="return confirm('Yakin dihapus?')">
+                            <button class="btn btn-danger">Hapus</button>
+                        </form>
+                    </td>
+                </tr>
+                {% endfor %}
+            </table>
+
+            <div class="action-bar">
+                <a href="formData"><button class="btn btn-primary">Tambah</button></a>
+                <a href="/cetak_transaksi_ibnu" target="_blank"><button class="btn btn-primary">Cetak</button></a>
+            </div>
+        </div>
+    </div>
+
+</body>
+
+</html>

@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Form - ibnu</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='ibnu_style.css') }}">
+</head>
+
+<body>
+    <div class="form-box">
+        <h2>Tambahkan data pasien</h2>
+        <form method="post"
+            action="{{ url_for('editData', id_transaksi_ibnu=transaksi_ibnu.id_transaksi_ibnu) if transaksi_ibnu else url_for('formData') }}">
+
+            <label>ID Pasien</label>
+            <select name="id_pasien_ibnu" required>
+                {% for p in pasien %}
+                <option value="{{ p.id_pasien_ibnu }}" {{ 'selected' if transaksi_ibnu and
+                    transaksi_ibnu.id_pasien_ibnu==p.id_pasien_ibnu else '' }}>
+                    {{ p.id_pasien_ibnu }} - {{ p.nama_ibnu }}
+                </option>
+                {% endfor %}
+            </select>
+
+            <label>Pilih Kamar</label>
+            <select name="id_kamar_ibnu" required>
+                {% for k in kamar %}
+                <option value="{{ k.id_kamar_ibnu }}" {{ 'selected' if transaksi_ibnu and
+                    transaksi_ibnu.id_kamar_ibnu==k.id_kamar_ibnu else '' }}>
+                    {{ k.kelas_ibnu }} (Rp {{ k.harga_ibnu }})
+                </option>
+                {% endfor %}
+            </select>
+
+            <label>Tanggal Masuk</label>
+            <input type="date" name="tgl_masuk_ibnu"
+                value="{{ transaksi_ibnu.tgl_masuk_ibnu if transaksi_ibnu else '' }}" required>
+
+            <label>Tanggal Keluar</label>
+            <input type="date" name="tgl_keluar_ibnu"
+                value="{{ transaksi_ibnu.tgl_keluar_ibnu if transaksi_ibnu else '' }}" required>
+
+            <label>Status Pembayaran</label>
+            <select name="status_pembayaran_ibnu">
+                <option value="Terbayar" {{ 'selected' if transaksi_ibnu and
+                    transaksi_ibnu.status_pembayaran_ibnu=='Terbayar' else '' }}>Terbayar</option>
+                <option value="Belum Bayar" {{ 'selected' if transaksi_ibnu and
+                    transaksi_ibnu.status_pembayaran_ibnu=='Belum Bayar' else '' }}>Belum Bayar</option>
+            </select>
+
+            <label>Tanggal Transaksi</label>
+            <input type="date" name="tgl_ibnu" value="{{ transaksi_ibnu.tgl_ibnu if transaksi_ibnu else '' }}" required>
+
+            <button type="submit">{{ 'UPDATE DATA' if transaksi_ibnu else 'SIMPAN DATA' }}</button>
+        </form>
+
+    </div>
+</body>
+
+</html>

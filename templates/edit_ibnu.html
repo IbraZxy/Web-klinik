@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Form - ibnu</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='ibnu_style.css') }}">
+</head>
+
+<body>
+    <div class="form-box">
+        <h2>Tambahkan data siswa</h2>
+        <form method="post" action="{{ url_for('editData', id_transaksi_ibnu=transaksi_ibnu.id_transaksi_ibnu) if transaksi_ibnu else url_for('formData') }}">
+    
+            <label for="">ID Transaksi</label>
+            <input type="text" name="id_transaksi_ibnu" value="{{ transaksi_ibnu.id_transaksi_ibnu if transaksi_ibnu else '' }}" required>
+      
+            <label for="">ID Pasien</label>
+            <input type="text" name="id_pasien_ibnu" value="{{ transaksi_ibnu.id_pasien_ibnu if transaksi_ibnu else '' }}" required>
+
+            <select name="status_pembayaran_ibnu" required>
+                <option value="" disabled {{ 'selected' if not transaksi_ibnu else '' }}>- Status Pembayaran -</option>
+                <option value="Terbayar" {{ 'selected' if transaksi_ibnu and transaksi_ibnu.status_pembayaran_ibnu=='Terbayar' else '' }}>Terbayar</option>
+                <option value="Belum Bayar" {{ 'selected' if transaksi_ibnu and transaksi_ibnu.status_pembayaran_ibnu=='Belum Bayar' else '' }}>belum Bayar</option>
+            </select>
+
+            <label>Tanggal Masuk</label>
+            <input type="date" name="tgl_masuk_ibnu"
+                value="{{ transaksi_ibnu.tgl_masuk_ibnu if transaksi_ibnu else '' }}" required>
+
+            <label>Tanggal Keluar</label>
+            <input type="date" name="tgl_keluar_ibnu"
+                value="{{ transaksi_ibnu.tgl_keluar_ibnu if transaksi_ibnu else '' }}" required>
+
+            <label for="">Tanggal</label>
+            <input type="date" name="tgl_ibnu" value="{{ transaksi_ibnu.tgl_ibnu if transaksi_ibnu else '' }}" required><br><br>
+            <button type="submit">KIRIM</button>
+        </form>
+
+    </div>
+</body>
+
+</html>
